@@ -12,5 +12,7 @@ Em Construção.
 
 Desenvolvimento Python | Framework Django
 
+Centro Universitário Projeção
+
 Responsável Pelo Projeto :
     * Samuel Carlos Nunes de Morais : samuel.moraisbsb@gmail.com
