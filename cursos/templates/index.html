@@ -5,8 +5,8 @@
  <!-- Estendendo e pegando o conteúdo dos Arq estáticos de  base,html -->
 {% block content %}
 
-    <!-- Preloader -->
-    <div id="preloader">
+      <!-- Preloader -->
+      <div id="preloader">
         <i class="circle-preloader"></i>
         <img src="{% static 'img/core-img/click.png' %}" alt="">
     </div>
@@ -20,15 +20,15 @@
             <div class="row">
                 <div class="col-12">
                     <form action="#" method="post">
-                        <input type="search" name="search" placeholder="Qual curso você está procurando...?">
+                        <input type="search" name="search" placeholder="O que está procurando...">
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    
-    {% include 'partials/menu.html'%}
+
+    {% include 'partials/menu.html' %}
 
     <!-- ##### Best Receipe Area Start ##### -->
     <section class="best-receipe-area">
@@ -37,16 +37,32 @@
                 <!-- Single Best Receipe Area -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-best-receipe-area mb-30">
-                        <img src="{% static 'img/bg-img/foto_curso.png' %} " alt="">
+                        <img src="{% static 'img/bg-img/pythoncurso.jpg' %}" alt="">
                         <div class="receipe-content">
-                            <a href="{% url 'index' %}">
-                                <h5>Nome do Curso</h5>
+                            <a href="{% url 'curso' %}">
+                                <h5>Curso de Python</h5>
                             </a>
                         </div>
                     </div>
                 </div>
+
+
+
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        <img src="{% static 'img/bg-img/php2.png' %}" alt="">
+                        <div class="receipe-content">
+                            <a href="{% url 'curso' %}">
+                                <h5>Curso de PHP</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- ##### Best Receipe Area End ##### -->
 
-{% include 'partials/footer.html'%}
-{% endblock %}}
+    {% include 'partials/footer.html' %}
+{% endblock %}
