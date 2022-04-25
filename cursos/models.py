@@ -2,7 +2,8 @@ from django.db import models
 from datetime import datetime
 # Create Modelo de Cursos
 
-class Cursos(models.Model):
+
+class Curso(models.Model):
     nome_curso = models.CharField(max_length=200)
     ementa_do_curso = models.TextField()
     informacoes = models.TextField()
