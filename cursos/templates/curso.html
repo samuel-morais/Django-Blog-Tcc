@@ -49,11 +49,25 @@
             </div>
         </div>
     </div>
+      
 
      <!--  incluindo as partiais de menu-->
     {% include 'partials/menu.html'%}
       
-
+    <!-- Receipe Slider -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="receipe-slider owl-carousel">
+                    {% if curso.foto_curso == '' %}
+                        <img src="{% static 'img/bg-img/cursos.jpg' %}">
+                    {% else %}
+                        <img src="{{ curso.foto_curso.url }}" alt="">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 
         <!-- Receipe Content Area -->
         <div class="receipe-content-area">
