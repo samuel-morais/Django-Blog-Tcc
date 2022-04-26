@@ -12,4 +12,5 @@ class Curso(models.Model):
     carga_horaria = models.IntegerField()
     categoria= models.CharField(max_length=100)
     data_curso = models.DateTimeField(default=datetime.now, blank=True)
+    foto_curso = models.ImageField(upload_to='fotos/%d/%m/%Y/', blank = True)
     publicada= models.BooleanField(default=False)

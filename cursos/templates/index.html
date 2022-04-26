@@ -37,19 +37,24 @@
     <div class="container">
         <div class="row">
             <!--  Exibindo Dados do Banco de Dados-->
-            {% if cursos%}
+            {% if cursos %}
             {% for curso in cursos  %}
             <!-- Single Best Receipe Area -->
             <div class="col-12 col-sm-16 col-lg-4">
                 <div class="single-best-receipe-area mb-30">
-                    <img src="{% static 'img/bg-img/cursos.jpg' %}"></img>
+                    {% if curso.foto_curso == '' %}
+                    <img src="{% static 'img/bg-img/cursos,jpg' %}">
+                    {% else %}
+                    <img src="{{ curso.foto_curso.url }}" alt="">
+                    {% endif %}
                     <div class="receipe-content">
-                        <a href="{% url 'curso' curso.id %}">
-                            <h5>{{ curso.nome_curso }}</h5>
+                    <a href="{% url 'curso' curso.id %}">
+                    <h5>{{ curso.nome_curso }}</h5>
                         </a>
                     </div>
                 </div>
             </div>
+            
             {% endfor %}
             {% else %}
             {% endif %}
@@ -60,3 +65,7 @@
 
     {% include 'partials/footer.html' %}
 {% endblock %}
+
+
+
+
