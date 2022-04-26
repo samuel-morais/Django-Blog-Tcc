@@ -44,7 +44,7 @@
                 <div class="single-best-receipe-area mb-30">
                     <img src="{% static 'img/bg-img/cursos.jpg' %}"></img>
                     <div class="receipe-content">
-                        <a href="{% url 'curso' %}">
+                        <a href="{% url 'curso' curso.id %}">
                             <h5>{{ curso.nome_curso }}</h5>
                         </a>
                     </div>

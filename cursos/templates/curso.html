@@ -62,11 +62,13 @@
                 <div class="row">
                     <div class="col-12 col-md-8">
                         <div class="receipe-headline my-5">
-                            <span>30 de Fevereiro, 2000</span>
-                            <h2>Curso de desenvolvimento </h2>
+                            <span>{{curso.data_curso}}</span>
+                            <h2>{{curso.nome_curso}} </h2>
                             <div class="receipe-duration">
-                                <h6>40:horas</h6>
-                       
+                                <h6>Carga Horária: {{curso.carga_horaria}} horas</h6>
+                                <h6>Categoria: {{curso.categoria}}</h6>
+                                <h6>Por: Pessoa</h6>
+
                             </div>
                         </div>
                     </div>
@@ -75,21 +77,22 @@
                     <div class="col-12 col-lg-8">
                         <!-- Single Preparation Step -->
                         <div class="single-preparation-step d-flex">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec varius dui. Suspendisse potenti. Vestibulum ac pellentesque tortor. Aenean congue sed metus in iaculis. Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget lobortis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
+                            <p> {{curso.ementa_do_curso}} </p>
                         </div>
                     </div>
 
                     <!-- Ingredientes -->
                     <div class="col-12 col-lg-4">
                         <div class="ingredients">
-                            <h4>Objetivo Curso</h4>
+                            <h4>Informações do  Curso</h4>
                             <div class="Descrição">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec varius dui. Suspendisse potenti. Vestibulum ac pellentesque tortor. Aenean congue sed metus in iaculis. Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget lobortis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
+                                <p>{{curso.informacoes }}</p>
                             </p>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    
                
  <!-- Incluindo Partials footer -->
  {% include 'partials/footer.html'%}
