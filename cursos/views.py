@@ -1,16 +1,15 @@
 from django.shortcuts import render
+from.models import Curso
 
 # Create your views here.
 
 def index(request):
-    cursos = {
-        1:'Python',
-        2:'PHP',
-        3:'Html'
-    }  
+    cursos = Curso.objects.all()
+
+    
 
     dados = {
-        'nome_dos_cursos' : cursos
+        'cursos' : cursos
     }
     return render(request, 'index.html',dados)
 
