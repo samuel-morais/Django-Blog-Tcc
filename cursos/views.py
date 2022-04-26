@@ -22,3 +22,17 @@ def curso(request, curso_id):
     }
     return render(request,'curso.html',curso_a_exibir)
 
+def buscar(request):
+    lista_cursos = Curso.objects.order_by('-data_curso').filter(publicada=True)
+
+    if 'buscar' in request.GET:
+        nome_a_buscar = request.GET['buscar']
+        if buscar:
+            lista_cursos = lista_cursos.filter(nome_curso__icontains = nome_a_buscar)
+
+        dados = {
+               'cursos' : lista_cursos
+        }
+
+    return render(request,'buscar.html', dados)
+

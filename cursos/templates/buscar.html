@@ -1,0 +1,71 @@
+ <!-- Estendendo base,html -->
+ {% extends 'base.html' %}
+ <!-- Carregando Arquivos estáticos -->
+{% load static %}
+ <!-- Estendendo e pegando o conteúdo dos Arq estáticos de  base,html -->
+{% block content %}
+
+      <!-- Preloader -->
+      <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="{% static 'img/core-img/click.png' %}" alt="">
+    </div>
+
+    <!-- Search Wrapper -->
+    <div class="search-wrapper">
+        <!-- Close Btn -->
+        <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="{% url 'buscar' %}">
+                        <input type="text" name="buscar" placeholder="O que está procurando...">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'partials/menu.html' %}
+
+    <!-- ##### Best Receipe Area Start ##### -->
+
+<section class="best-receipe-area">
+1    <div class="container">
+        <div class="row">
+            <!--  Exibindo Dados do Banco de Dados-->
+            {% if cursos %}
+            {% for curso in cursos %}
+            <!-- Single Best Receipe Area -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-best-receipe-area mb-30">
+                    {% if curso.foto_curso == '' %}
+                        <img src="{% static 'img/bg-img/cursos.jpg' %}">
+                    {% else %}
+                        <img src="{{ curso.foto_curso.url }}" alt="">
+                    {% endif %}
+                        <div class="receipe-content">
+                        <a href="{% url 'curso' curso.id %}">
+                            <h5>{{ curso.nome_curso }}</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-12 col-sm-6 col-lg-4">
+                <p>Curso Não Encontrado</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+    <!-- ##### Best Receipe Area End ##### -->
+
+    {% include 'partials/footer.html' %}
+{% endblock %}
+
+
+
+
