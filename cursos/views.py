@@ -4,7 +4,7 @@ from.models import Curso
 # Create your views here.
 
 def index(request):
-    cursos = Curso.objects.filter(publicada=True)
+    cursos = Curso.objects.order_by('-data_curso').filter(publicada=True)
 
     
 
