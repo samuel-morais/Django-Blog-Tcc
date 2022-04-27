@@ -1,11 +1,68 @@
-<div class="contact-area section-padding-0-80">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-heading">
-                    <h3>Olá {{ user.username }}</h3>
+ <!-- Estendendo base,html -->
+ {% extends 'base.html' %}
+ <!-- Carregando Arquivos estáticos -->
+{% load static %}
+ <!-- Estendendo e pegando o conteúdo dos Arq estáticos de  base,html -->
+{% block content %}
+
+      <!-- Preloader -->
+      <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="{% static 'img/core-img/click.png' %}" alt="">
+    </div>
+
+   
+    {% include 'partials/_busca.html' %}
+    {% include 'partials/_menu.html' %}
+
+    <div class="contact-area section-padding-0-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Olá {{ user.username }}</h3>
+                    </div>
                 </div>
             </div>
         </div>
+     </div>
+     
+    <!-- ##### Best Receipe Area Start ##### -->
+
+<section class="best-receipe-area">
+1    <div class="container">
+        <div class="row">
+            <!--  Exibindo Dados do Banco de Dados-->
+            {% if cursos %}
+            {% for curso in cursos %}
+            <!-- Single Best Receipe Area -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-best-receipe-area mb-30">
+                    {% if curso.foto_curso == '' %}
+                        <img src="{% static 'img/bg-img/cursos.jpg' %}">
+                    {% else %}
+                        <img src="{{ curso.foto_curso.url }}" alt="">
+                    {% endif %}
+                        <div class="receipe-content">
+                        <a href="{% url 'curso' curso.id %}">
+                            <h5>{{ curso.nome_curso }}</h5>
+                            <button class="btn btn-success" type="submit">Entrar</button>
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            {% endif %}
+        </div>
     </div>
- </div>
+</section>
+    <!-- ##### Best Receipe Area End ##### -->
+
+    {% include 'partials/_footer.html' %}
+{% endblock %}
+
+
+
+
