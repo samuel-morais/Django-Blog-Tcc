@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect, get_list_or_404, get_object_or_404
-from.models import Curso
+from cursos.models import Curso
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 
@@ -29,8 +29,7 @@ def buscar(request):
 
     if 'buscar' in request.GET:
         nome_a_buscar = request.GET['buscar']
-        if buscar:
-            lista_cursos = lista_cursos.filter(nome_curso__icontains = nome_a_buscar)
+        lista_cursos = lista_cursos.filter(nome_curso__icontains = nome_a_buscar)
 
         dados = {
                'cursos' : lista_cursos
