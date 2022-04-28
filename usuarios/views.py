@@ -96,3 +96,8 @@ def deleta_curso(request,curso_id):
     curso = get_object_or_404(Curso, pk=curso_id)
     curso.delete()
     return redirect('dashboard')
+
+def edita_curso(request,curso_id):
+    curso = get_object_or_404(Curso, pk=curso_id)
+    curso_a_editar = {'curso':curso}
+    return render (request,'usuarios/edita_curso.html',curso_a_editar)

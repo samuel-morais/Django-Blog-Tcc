@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Preloader -->
+<div id="preloader">
+    <i class="circle-preloader"></i>
+    <img src="{% static 'img/core-img/clik.jpg' %}" alt="">
+</div>
+
+{% include 'partials/_busca.html' %}
+
+{% include 'partials/_menu.html' %}
+
+<!-- ##### Contact Form Area Start ##### -->
+<div class="contact-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading">
+                    <h3>Edite aqui o seu curso, {{ user.username }} :)</h3>
+                </div>
+            </div>
+        </div>
+        {% include 'partials/_alertas.html'%}
+        <div class="row">
+            <div class="col-12">
+            <p>Todos os campos são obrigatórios</p>
+                <div class="contact-form-area">
+                    <form action="{% url 'cria_curso' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12 col-lg-12">
+                                <label for="nome_curso"><b>Título do Curso</b></label>
+                                <input type="text" id="nome_curso" class="form-control" name="nome_curso" placeholder="Ex. Curso de html" value="{{curso.nome_curso}}" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="file"><b>Ementa do Curso</b></label>
+                                <textarea class="form-control" name="ementa_do_curso" cols="30" rows="10" placeholder="Coloque a ementa do curso" required>{{curso.ementa_do_curso}}</textarea>
+                            </div>
+                            <div class="col-12">
+                                <label for="file"><b>Informações</b></label>
+                                <textarea class="form-control" name="informacoes" cols="30" rows="10" placeholder="Ex. coloque as informações do curso" required>{{curso.informacoes}}</textarea>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <label for="file"><b>Carga Horária </b></label>
+                                <input type="number" class="form-control" name="carga_horaria" placeholder="Ex. 20 horas" value="{{curso.carga_horaria}}" required>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <label for="file"><b>Categoria do curso</b></label>
+                                <input type="text" class="form-control" name="categoria" placeholder="Ex. Categoria do curso" value="{{curso.categoria}}" required>
+                            </div>
+                            <div class="col-12 col-lg-4"> 
+                                <label for="file"><b>Foto utilizada</b></label>
+                                <img src="{{ curso.foto_curso.url }}" alt="">
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <label for="file"><b>Adicionar nova foto</b></label>
+                                <input type="file" class="form-control" name="foto_curso">
+                            </div>
+                            <div class="col-12 text-center">
+                                <button class="btn btn-success" type="submit">Atualizar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'partials/_footer.html' %}
+{% endblock %}
