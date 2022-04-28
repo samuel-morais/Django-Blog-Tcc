@@ -50,6 +50,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
+    messages.success(request,'Logout realizado com sucesso !')
     return redirect ('index')
     
 #    return render(request,'usuarios/logout.html')
@@ -101,3 +102,19 @@ def edita_curso(request,curso_id):
     curso = get_object_or_404(Curso, pk=curso_id)
     curso_a_editar = {'curso':curso}
     return render (request,'usuarios/edita_curso.html',curso_a_editar)
+
+
+def atualiza_curso(request):
+    if request.method == 'POST':
+        curso_id = request.POST['curso_id']
+        r = Curso.objects.get(pk=curso_id)
+        r.nome_curso = request.POST['nome_curso']
+        r.ementa_do_curso = request.POST['ementa_do_curso']
+        r.informacoes = request.POST['informacoes']
+        r.carga_horaria = request.POST['carga_horaria']
+        r.categoria = request.POST['categoria']
+        if 'foto_curso' in request.FILES:
+            r.foto_curso = request.FILES['foto_curso']
+        r.save()
+        return redirect('dashboard')
+

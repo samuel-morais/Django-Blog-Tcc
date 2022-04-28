@@ -26,8 +26,9 @@
             <div class="col-12">
             <p>Todos os campos são obrigatórios</p>
                 <div class="contact-form-area">
-                    <form action="{% url 'cria_curso' %}" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
+                    <form action="{% url 'atualiza_curso' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="text" id="curso_id" class="form-control" name="curso_id" value="{{curso.id}}" hidden>
                         <div class="row">
                             <div class="col-12 col-lg-12">
                                 <label for="nome_curso"><b>Título do Curso</b></label>
