@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from cursos.models import Curso
 
+
 def cadastro(request):
+    """Cadastra uma Nova Pessoa no Sistema"""
     if request.method == 'POST':
         nome = request.POST['nome']
         email = request.POST['email']
@@ -32,6 +34,8 @@ def cadastro(request):
         return render(request,'usuarios/cadastro.html')
 
 def login(request):
+    """Realiza o Login no Sistema"""
+    
     if request.method == 'POST':
         email = request.POST['email']
         senha = request.POST['senha']
@@ -49,6 +53,7 @@ def login(request):
 
 
 def logout(request):
+    """Realiza o Logoutno Sistema"""
     auth.logout(request)
     messages.success(request,'Logout realizado com sucesso !')
     return redirect ('index')
@@ -56,6 +61,7 @@ def logout(request):
 #    return render(request,'usuarios/logout.html')
 
 def dashboard(request):
+    """Dashboard de cursos Sistema"""
     if request.user.is_authenticated:
         id = request.user.id
         cursos = Curso.objects.order_by('-data_curso').filter(pessoa=id)
