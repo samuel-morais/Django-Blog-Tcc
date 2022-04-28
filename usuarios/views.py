@@ -9,18 +9,21 @@ def cadastro(request):
         email = request.POST['email']
         senha = request.POST['password']
         senha2 = request.POST['password2']
-        if not nome.strip():
+        if campo_vazio(nome):
             messages.error(request,'O campo Nome não pode ficar em Branco') 
             return redirect('cadastro')
-        if not email.strip():
+        if campo_vazio(email):
             messages.error(request,'O campo email não pode ficar em Branco') 
             return redirect('cadastro')  
-        if senha != senha2:
+        if senha_nao_sao_iguais(senha, senha2):
             messages.error(request,'As senhas não são iguais')    
             return redirect('cadastro') 
         if User.objects.filter(email=email).exists():
             messages.error(request,'Usuário Já Cadastrado') 
-            return redirect('cadastro')   
+            return redirect('cadastro')  
+        if User.objects.filter(username=nome).exists():
+            messages.error(request,'Usuário Já Cadastrado') 
+            return redirect('cadastro')      
         user = User.objects.create_user(username=nome, email=email, password=senha)
         user.save()
         messages.success(request,'Usuário Cadastrado com Sucesso !')  
@@ -32,8 +35,8 @@ def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         senha = request.POST['senha']
-        if email == '' or senha == '':
-            messages.error(request,'Os campos email e senha não podem ficar em branco') 
+        if campo_vazio(email) or campo_vazio(senha):
+            messages.error(request,'Os campos email e senha não podem ficar em branco')
             return redirect('login')
         if User.objects.filter(email=email).exists():
             nome = User.objects.filter(email=email).values_list('username', flat=True).get()
@@ -42,9 +45,6 @@ def login(request):
                 auth.login(request,user)     
                 messages.success(request,'Login Realizado com Sucesso!!')  
                 return redirect('dashboard')
-                
-     
-        
     return render(request,'usuarios/login.html')
 
 
@@ -86,5 +86,10 @@ def cria_curso(request):
     else:
        return render (request,'usuarios/cria_curso.html')
 
+def campo_vazio(campo):
+    return  not campo.strip()
+
+def senha_nao_sao_iguais(senha, senha2):
+    return senha != senha2
         
 
