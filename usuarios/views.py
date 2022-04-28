@@ -60,4 +60,18 @@ def dashboard(request):
         return redirect('index')
 #    return render(request,'usuarios/dashboard.html')  
 
+def cria_curso(request):
+    if request.method == 'POST':
+        nome_curso = request.POST['nome_curso']
+        ementa_curso = request.POST['ementa_curso']
+        informacoes = request.POST['informacoes']
+        carga_horaria = request.POST['carga_horaria']
+        categoria = request.POST['categoria']
+        foto_curso = request.FILES['foto_curso']
+        print(nome_curso,ementa_curso,informacoes,carga_horaria,categoria,foto_curso)
+        return redirect('dashboard')
+    else:
+       return render (request,'usuarios/cria_curso.html')
+
+        
 
