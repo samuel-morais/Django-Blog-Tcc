@@ -11,7 +11,7 @@ def index(request):
     dados = {
         'cursos' : cursos
     }
-    return render(request, 'index.html',dados)
+    return render(request, 'cursos/index.html',dados)
 
 
 
@@ -20,7 +20,7 @@ def curso(request, curso_id):
     curso_a_exibir = {
         'curso' : curso
     }
-    return render(request,'curso.html',curso_a_exibir)
+    return render(request,'cursos/curso.html',curso_a_exibir)
 
 def buscar(request):
     lista_cursos = Curso.objects.order_by('-data_curso').filter(publicada=True)
@@ -34,5 +34,5 @@ def buscar(request):
                'cursos' : lista_cursos
         }
 
-    return render(request,'buscar.html', dados)
+    return render(request,'cursos/buscar.html', dados)
 

@@ -85,7 +85,7 @@ def cria_curso(request):
         curso.save()
         return redirect('dashboard')
     else:
-       return render (request,'usuarios/cria_curso.html')
+       return render (request,'cursos/cria_curso.html')
 
 def campo_vazio(campo):
     return  not campo.strip()
@@ -101,7 +101,7 @@ def deleta_curso(request,curso_id):
 def edita_curso(request,curso_id):
     curso = get_object_or_404(Curso, pk=curso_id)
     curso_a_editar = {'curso':curso}
-    return render (request,'usuarios/edita_curso.html',curso_a_editar)
+    return render (request,'cursos/edita_curso.html',curso_a_editar)
 
 
 def atualiza_curso(request):
