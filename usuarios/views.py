@@ -92,4 +92,7 @@ def campo_vazio(campo):
 def senha_nao_sao_iguais(senha, senha2):
     return senha != senha2
         
-
+def deleta_curso(request,curso_id):
+    curso = get_object_or_404(Curso, pk=curso_id)
+    curso.delete()
+    return redirect('dashboard')
