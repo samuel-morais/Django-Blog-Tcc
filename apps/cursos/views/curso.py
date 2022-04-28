@@ -2,16 +2,19 @@ from django.shortcuts import render,redirect, get_list_or_404, get_object_or_404
 from cursos.models import Curso
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
+from django.core.paginator import Paginator, EmptyPage , PageNotAnInteger
 
 # Create your views here.
 
 def index(request):
     cursos = Curso.objects.order_by('-data_curso').filter(publicada=True)
-
+    paginator = Paginator(cursos, 1)
+    page = request.GET.get('page')
+    cursos_por_pagina = paginator.get_page(page)
     
 
     dados = {
-        'cursos' : cursos
+        'cursos' : cursos_por_pagina
     }
     return render(request, 'cursos/index.html',dados)
 
@@ -24,18 +27,7 @@ def curso(request, curso_id):
     }
     return render(request,'cursos/curso.html',curso_a_exibir)
 
-def buscar(request):
-    lista_cursos = Curso.objects.order_by('-data_curso').filter(publicada=True)
 
-    if 'buscar' in request.GET:
-        nome_a_buscar = request.GET['buscar']
-        lista_cursos = lista_cursos.filter(nome_curso__icontains = nome_a_buscar)
-
-        dados = {
-               'cursos' : lista_cursos
-        }
-
-    return render(request,'cursos/buscar.html', dados)
 
 def cria_curso(request):
     if request.method == 'POST':
