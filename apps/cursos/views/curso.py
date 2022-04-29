@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, EmptyPage , PageNotAnInteger
 
 def index(request):
     cursos = Curso.objects.order_by('-data_curso').filter(publicada=True)
-    paginator = Paginator(cursos, 1)
+    paginator = Paginator(cursos, 9)
     page = request.GET.get('page')
     cursos_por_pagina = paginator.get_page(page)
     
